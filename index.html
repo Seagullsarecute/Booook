@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet/index.css">
+    <title>BOOOOK • Login</title>
+</head>
+<body>
+    <div class="wrapper">
+        <form method="post" action="authentication_check.php">
+            <h2>Login</h2>
+            <p id="index-subtitle">Accedi al tuo account</p>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="pw" required><br><br>
+            <input type="hidden" name="action" value="login">
+            
+            <input type="submit" value="Login">
+            <p>Non hai un account? <a href="register.html">Registrati!</a></p>
+        </form>
+    </div>
+</body>
+</html>
