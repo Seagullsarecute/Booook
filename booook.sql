@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 20, 2024 alle 12:03
+-- Creato il: Apr 20, 2024 alle 12:22
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -34,6 +34,13 @@ CREATE TABLE `annunci` (
   `fk_id_info_libro_richiesto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `annunci`
+--
+
+INSERT INTO `annunci` (`id_annuncio`, `fk_id_utente`, `fk_id_copia_libro_scambiato`, `fk_id_info_libro_richiesto`) VALUES
+(1, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +55,13 @@ CREATE TABLE `commenti` (
   `fk_id_info_libro` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `commenti`
+--
+
+INSERT INTO `commenti` (`id_commento`, `testo`, `rating`, `fk_id_utente`, `fk_id_info_libro`) VALUES
+(1, 'OOOOOOOOOO MEOW', 4, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +73,13 @@ CREATE TABLE `copia_libri` (
   `fk_id_info_libro` int(11) NOT NULL,
   `fk_id_utente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `copia_libri`
+--
+
+INSERT INTO `copia_libri` (`id_copia_libro`, `fk_id_info_libro`, `fk_id_utente`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -72,10 +93,17 @@ CREATE TABLE `info_libri` (
   `autore` varchar(50) NOT NULL,
   `genere` varchar(50) NOT NULL,
   `descrizione` varchar(1024) NOT NULL,
-  `src` varchar(100) NOT NULL,
-  `rating` double NOT NULL,
+  `src` varchar(100) DEFAULT NULL,
+  `rating` double DEFAULT NULL,
   `casa_editrice` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `info_libri`
+--
+
+INSERT INTO `info_libri` (`id_info_libro`, `titolo`, `autore`, `genere`, `descrizione`, `src`, `rating`, `casa_editrice`) VALUES
+(1, 'LE AVVENTUREH MIAOSE', 'erGatto', 'thriller', 'AO sto libbro è fichissimo, dovete leggerlo, parla del gatto no? E ha delle AVVENTUREH???? ziopera leggetelo.', '', 0, 'Gattastico');
 
 -- --------------------------------------------------------
 
@@ -107,6 +135,14 @@ CREATE TABLE `utenti` (
   `pw` varchar(70) NOT NULL,
   `tipo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `utenti`
+--
+
+INSERT INTO `utenti` (`id_utente`, `nome`, `cognome`, `email`, `pw`, `tipo`) VALUES
+(1, 'Luca', 'Donalduck', 'luca@a.a', 'ff377aff39a9345a9cca803fb5c5c081', 'user'),
+(2, 'Ash', 'Efficie', 'ash@a.a', '2852f697a9f8581725c6fc6a5472a2e5', 'admin');
 
 --
 -- Indici per le tabelle scaricate
@@ -167,25 +203,25 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `annunci`
 --
 ALTER TABLE `annunci`
-  MODIFY `id_annuncio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_annuncio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `commenti`
 --
 ALTER TABLE `commenti`
-  MODIFY `id_commento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_commento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `copia_libri`
 --
 ALTER TABLE `copia_libri`
-  MODIFY `id_copia_libro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_copia_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `info_libri`
 --
 ALTER TABLE `info_libri`
-  MODIFY `id_info_libro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_info_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `scambi`
@@ -197,7 +233,7 @@ ALTER TABLE `scambi`
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id_utente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Limiti per le tabelle scaricate
