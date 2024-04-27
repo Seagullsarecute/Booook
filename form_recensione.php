@@ -15,7 +15,7 @@ $_SESSION['cognome']="BAU";
 
 $nome= $_SESSION['nome'];
 $cognome= $_SESSION['cognome'];
-$id_libro= $_GET['id_libro'];
+$id_libro= $_POST['id_libro'];
 
     $servername = "localhost";
     $username = "root"; 
@@ -48,59 +48,25 @@ $id_libro= $_GET['id_libro'];
       </ul>
       </div>
 </nav>
+
 <?php
-  $sql = "SELECT * FROM info_libri WHERE id_info_libro = $id_libro";
+     $sql = "SELECT * FROM info_libri WHERE id_info_libro = $id_libro";
 
-  $result= $conn->query($sql);
+     $result= $conn->query($sql);
 
-  if($result->num_rows >0)
-{
-  while($row= $result->fetch_assoc())
+     while($row= $result->fetch_assoc())
   {
-   echo "<div class='centre'><img src='img/" . $row['src'] . "'></div></div>";
-   echo "<h1>TITOLO</h1>";
-   echo "<h1>".$row['titolo']."</h1>";
-   echo "<h3>AUTORE</h3>";
-   echo "<h3>".$row['autore']."</h3>";
-   echo "<h3>GENERE</h3>";
-   echo "<h3>".$row['genere']."</h3>";
-   echo "<h3>DESCRIZIONE</h3>";
-   echo "<h3>".$row['descrizione']."</h3>";
-   echo "<h3>RATING</h3>";
-   echo "<h3>".$row['rating']."</h3>";
-   echo "<h3>CASA EDITRICE</h3>";
-   echo "<h3>".$row['casa_editrice']."</h3>";
-   echo "<hr></hr>";
+      echo "<h2>Stai recensendo il libro: ".$row["titolo"]."</h2>";
   }
-} else{
-  echo "The table is empty";
-}
-
-
-$sql = "SELECT * FROM commenti
-        JOIN utenti ON commenti.fk_id_utente= utenti.id_utente
-        WHERE fk_id_info_libro = $id_libro";
-
-$result= $conn->query($sql);
-if($result->num_rows >0)
-{
-  echo "<div id='review-header'>";
-  echo "<h2>RECENSIONI</h2>";
-  echo "<form action='form_recensione.php' method= 'post'>
-     <input type ='hidden' name='id_libro' value='$id_libro'>
-     <input type ='submit' name='invio' value='Recensione' class='postButton'/>
-     </form>";
-  echo "</div>";
-  echo "<table class='table table-hover'> <tr> <th> UTENTE</th><th> RATING </th><th> COMMENTO </th></tr>";
-
-  while($row= $result->fetch_assoc())
-  {
-  echo "<tr><td>".$row["nome"]." ".$row["cognome"]."</td><td>".$row["rating"]."</td><td>".$row["testo"]."</td></tr>";
-  }
-  echo "</table>";
-} else{
-  echo "The table is empty";
-}
-
+   
 ?>
-  </body>
+
+<h2></h2>
+<form action='rec_check.php' method= 'post'>
+    <p>Rating:<p><input type='number' name='rating' min='0' max='5' value='1'/>
+    <p>Commento:<p>
+    <input id="comment-text" type="text" name="commento"><br>
+    <input type ='hidden' name='id_libro' value=<?php echo $id_libro ?>>
+    <input type="submit" value="Invia">
+</form>
+</body>
