@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 27, 2024 alle 12:14
+-- Creato il: Apr 27, 2024 alle 12:59
 -- Versione del server: 10.4.8-MariaDB
 -- Versione PHP: 7.3.10
 
@@ -54,7 +54,15 @@ CREATE TABLE `annunci` (
 --
 
 INSERT INTO `annunci` (`id_annuncio`, `fk_id_utente`, `fk_id_copia_libro_scambiato`, `fk_id_info_libro_richiesto`) VALUES
-(1, 1, 1, 1);
+(1, 1, 1, 1),
+(2, 5, 12, 9),
+(3, 2, 39, 1),
+(4, 2, 2, 7),
+(5, 3, 50, 9),
+(6, 6, 11, 2),
+(7, 3, 34, 11),
+(8, 1, 40, 4),
+(9, 1, 35, 10);
 
 -- --------------------------------------------------------
 
@@ -288,7 +296,7 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `annunci`
 --
 ALTER TABLE `annunci`
-  MODIFY `id_annuncio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_annuncio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `commenti`
