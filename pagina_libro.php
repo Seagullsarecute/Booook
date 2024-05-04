@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
-<title>Booook • libro </title>
+<title>BOOOOK • libro </title>
 </head>
 <?php 
 
@@ -17,16 +17,16 @@ $nome= $_SESSION['nome'];
 $cognome= $_SESSION['cognome'];
 $id_libro= $_GET['id_libro'];
 
-    $servername = "localhost";
-    $username = "root"; 
-    $pw = ""; 
-    $dbname = "booook";
+$servername = "localhost";
+$username = "root"; 
+$pw = ""; 
+$dbname = "booook";
 
-    $conn = new mysqli($servername, $username, $pw, $dbname);
+$conn = new mysqli($servername, $username, $pw, $dbname);
 
-    if ($conn->connect_error) {
-        die("Connessione fallita: " . $conn->connect_error);
-    }
+if ($conn->connect_error) {
+  die("Connessione fallita: " . $conn->connect_error);
+}
 ?>
 
 <body>
@@ -41,7 +41,7 @@ $id_libro= $_GET['id_libro'];
 {
   while($row= $result->fetch_assoc())
   {
-   echo "<div class='centre'><img src='img/" . $row['src'] . "'></div></div>";
+   echo "<div class='centre'><img src='images/book_covers/" . $row['src'] . "'></div></div>";
    echo "<h1>TITOLO</h1>";
    echo "<h1>".$row['titolo']."</h1>";
    echo "<h3>AUTORE</h3>";
