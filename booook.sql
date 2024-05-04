@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 04, 2024 alle 11:28
+-- Creato il: Mag 04, 2024 alle 12:40
 -- Versione del server: 10.4.8-MariaDB
 -- Versione PHP: 7.3.10
 
@@ -176,17 +176,17 @@ CREATE TABLE `info_libri` (
 --
 
 INSERT INTO `info_libri` (`id_info_libro`, `titolo`, `autore`, `genere`, `descrizione`, `src`, `rating`, `casa_editrice`) VALUES
-(1, 'LE AVVENTUREH MIAOSE', 'erGatto', 'thriller', 'AO sto libbro è fichissimo, dovete leggerlo, parla del gatto no? E ha delle AVVENTUREH???? ziopera leggetelo.', '', 0, 'Gattastico'),
-(2, 'Il Segreto del Tempo', 'Luca Bianchi', 'fantascienza', 'Un viaggio straordinario attraverso le pieghe del tempo, dove ogni scelta può cambiare il destino dell\'umanità.', '', 0, 'Nuove Sfere'),
-(3, 'I Sapori del Mediterraneo', 'Antonia Moretti', 'cucina', 'Esplora le ricette più gustose e i segreti culinari delle coste mediterranee, raccolti in un libro che è un vero e proprio viaggio sensoriale.', '', 0, 'Gusto e Tradizione'),
-(4, 'La Caduta degli Dei', 'Francesco Rossi', 'fantasy', 'In un mondo dove gli dei camminano tra gli uomini, una guerra celeste minaccia di distruggere ogni cosa. Segui le avventure di eroi e mortali nel tentativo di salvare il loro mondo.', '', 0, 'Fantasia Epica'),
-(5, 'Voci Nascoste', 'Giulia Fiore', 'thriller', 'Un thriller psicologico che ti porterà nei meandri della mente umana, dove i segreti più oscuri si svelano pagina dopo pagina.', '', 0, 'Suspense'),
-(6, 'L\'Eredità Perduta', 'Marco Neri', 'avventura', 'Un romanzo d\'avventura che segue le orme di un antico mistero, portando il lettore in un viaggio mozzafiato attraverso continenti dimenticati.', '', 0, 'Avventura Storica'),
-(7, 'Riflessi d\'Amore', 'Sofia Bianchi', 'romantico', 'Una storia d\'amore che sfida il tempo, raccontata attraverso le lettere di due amanti separati dalla guerra ma uniti dal destino.', '', 0, 'Cuore e Passione'),
-(8, 'Il Giardino delle Ombre', 'Claudio Verdi', 'horror', 'Scopri cosa si nasconde dietro le siepi di un antico giardino inglese, in un romanzo horror che ti farà dubitare di ogni ombra.', '', 0, 'Brividi Notturni'),
-(9, 'Codice Millenario', 'Alessandra Gialli', 'giallo', 'Un enigma secolare è sul punto di essere risolto, ma ci sono forze oscure che faranno di tutto per mantenere il segreto. Un thriller storico che unisce mistero e azione.', '', 0, 'Mistero Antico'),
-(10, 'Sussurri del Passato', 'Elena Grigio', 'drammatico', 'La storia di una famiglia segnata da un passato doloroso, dove ogni rivelazione porta a nuove domande e antichi rimorsi.', '', 0, 'Dramma Familiare'),
-(11, 'Le Stelle di Roma', 'Giorgio Celeste', 'storico', 'Un romanzo storico che illumina le vite di coloro che hanno costruito l\'impero più grande del mondo antico, mostrando la grandezza e la caducità del potere.', '', 0, 'Epica Romana');
+(1, 'LE AVVENTUREH MIAOSE', 'erGatto', 'thriller', 'AO sto libbro è fichissimo, dovete leggerlo, parla del gatto no? E ha delle AVVENTUREH???? ziopera leggetelo.', '', NULL, 'Gattastico'),
+(2, 'Il Segreto del Tempo', 'Luca Bianchi', 'fantascienza', 'Un viaggio straordinario attraverso le pieghe del tempo, dove ogni scelta può cambiare il destino dell\'umanità.', '', NULL, 'Nuove Sfere'),
+(3, 'I Sapori del Mediterraneo', 'Antonia Moretti', 'cucina', 'Esplora le ricette più gustose e i segreti culinari delle coste mediterranee, raccolti in un libro che è un vero e proprio viaggio sensoriale.', '', NULL, 'Gusto e Tradizione'),
+(4, 'La Caduta degli Dei', 'Francesco Rossi', 'fantasy', 'In un mondo dove gli dei camminano tra gli uomini, una guerra celeste minaccia di distruggere ogni cosa. Segui le avventure di eroi e mortali nel tentativo di salvare il loro mondo.', '', NULL, 'Fantasia Epica'),
+(5, 'Voci Nascoste', 'Giulia Fiore', 'thriller', 'Un thriller psicologico che ti porterà nei meandri della mente umana, dove i segreti più oscuri si svelano pagina dopo pagina.', '', NULL, 'Suspense'),
+(6, 'L\'Eredità Perduta', 'Marco Neri', 'avventura', 'Un romanzo d\'avventura che segue le orme di un antico mistero, portando il lettore in un viaggio mozzafiato attraverso continenti dimenticati.', '', NULL, 'Avventura Storica'),
+(7, 'Riflessi d\'Amore', 'Sofia Bianchi', 'romantico', 'Una storia d\'amore che sfida il tempo, raccontata attraverso le lettere di due amanti separati dalla guerra ma uniti dal destino.', '', NULL, 'Cuore e Passione'),
+(8, 'Il Giardino delle Ombre', 'Claudio Verdi', 'horror', 'Scopri cosa si nasconde dietro le siepi di un antico giardino inglese, in un romanzo horror che ti farà dubitare di ogni ombra.', '', NULL, 'Brividi Notturni'),
+(9, 'Codice Millenario', 'Alessandra Gialli', 'giallo', 'Un enigma secolare è sul punto di essere risolto, ma ci sono forze oscure che faranno di tutto per mantenere il segreto. Un thriller storico che unisce mistero e azione.', '', NULL, 'Mistero Antico'),
+(10, 'Sussurri del Passato', 'Elena Grigio', 'drammatico', 'La storia di una famiglia segnata da un passato doloroso, dove ogni rivelazione porta a nuove domande e antichi rimorsi.', '', NULL, 'Dramma Familiare'),
+(11, 'Le Stelle di Roma', 'Giorgio Celeste', 'storico', 'Un romanzo storico che illumina le vite di coloro che hanno costruito l\'impero più grande del mondo antico, mostrando la grandezza e la caducità del potere.', '', NULL, 'Epica Romana');
 
 -- --------------------------------------------------------
 
