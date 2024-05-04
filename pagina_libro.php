@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
-<title>Booook ● libro </title>
+<title>Booook • libro </title>
 </head>
 <?php 
 
@@ -30,24 +30,8 @@ $id_libro= $_GET['id_libro'];
 ?>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href=""><?php echo "$nome"." "."$cognome" ?></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-        <a class="nav-link" href="annunci.php">Annunci<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="profilo.php">Profilo<span class="sr-only"></span></a>
-    </li>
-      </ul>
-      </div>
-</nav>
+<?php include "navbar.php"?>
 <?php
   $sql = "SELECT * FROM info_libri WHERE id_info_libro = $id_libro";
 

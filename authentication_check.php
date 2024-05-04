@@ -9,7 +9,6 @@ $dbname = "booook";
 $conn = new mysqli($servername, $svusername, $svpassword, $dbname);
 
 if($_POST["action"] == "login") {
-    // Questo commento è una prova
 
     // Get the email and password from $_POST variables
     $email = $_POST['email'];
