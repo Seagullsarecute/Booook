@@ -15,7 +15,6 @@ $conn = new mysqli($servername, $username, $pw, $dbname);
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
-echo "<script>alert(".$_SESSION['user_id'].")</script>";
 
 ?>
 
@@ -32,9 +31,9 @@ echo "<script>alert(".$_SESSION['user_id'].")</script>";
 <body>
     <?php include 'navbar.php' ?>
     <div id="wrapper">
-        <h1>Benvenuto <?php echo $nome . " " . $cognome ?></h1>
+        <h1 id="title">Benvenuto in BOOOOK</h1>
         <h2>Elenco di annunci:</h2>
-        <div class="annunci-wrapper">
+        <div id="annunci-wrapper">
             <?php 
             $sql = "SELECT 
                         info_richiesto.titolo AS richiesto_titolo,
@@ -61,7 +60,7 @@ echo "<script>alert(".$_SESSION['user_id'].")</script>";
                     echo "<div class='annuncio-singolo-wrapper'>";
                         echo "<h4><b>Offerto da:</b> " . $row['nome'] . " " . $row["cognome"]."</h4>";
                         echo "<div class='annuncio-singolo-scambiato'>";
-                            echo "<img src='images/book_covers/" . $row['scambiato_src'] . "'>";
+                            echo "<img class='annuncio-singolo-scambiato-img' src='images/book_covers/" . $row['scambiato_src'] . "'>";
                             echo "<div class='annuncio-singolo-scambiato-info'>";
                                 echo "<p><b>Titolo: </b>" . $row['scambiato_titolo'] . "</td>";
                                 echo "<p><b>Autore: </b>" . $row['scambiato_autore'] . "</td>";
@@ -70,9 +69,9 @@ echo "<script>alert(".$_SESSION['user_id'].")</script>";
                             echo "</div>";
                         echo "</div>";
                         echo "<div class='annuncio-singolo-richiesto'>";
-                            echo "<p>Libro da cedere: <a href='pagina_libro.php?id_libro=".$row["richiesto_info_id"]."'>".$row["richiesto_titolo"]."</a></p>";
-                            echo "<button class='btn-scambia'>ESEGUI SCAMBIO</button>";
+                            echo "<span>Libro da cedere: <a href='pagina_libro.php?id_libro=".$row["richiesto_info_id"]."'>".$row["richiesto_titolo"]."</a></span><button class='btn-scambia'>ESEGUI SCAMBIO</button>";
                         echo "</div>";
+                        echo "<hr></hr>";
                     echo "</div>";
                 }
             }
