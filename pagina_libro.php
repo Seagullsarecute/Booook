@@ -31,6 +31,7 @@ if ($conn->connect_error) {
 <body>
 
 <?php include "navbar.php"?>
+
 <?php
   $sql = "SELECT * FROM info_libri WHERE id_info_libro = $id_libro";
 

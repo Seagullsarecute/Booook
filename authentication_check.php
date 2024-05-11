@@ -26,7 +26,7 @@ if($_POST["action"] == "login") {
         $row = $result->fetch_assoc();
 
         // Save the record's column as $_SESSION variables
-        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['user_id'] = $row['id_utente'];
         $_SESSION['email'] = $row['email'];
         $_SESSION['nome'] = $row['nome'];
         $_SESSION['cognome'] = $row['cognome'];

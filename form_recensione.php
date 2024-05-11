@@ -62,7 +62,7 @@ $id_libro= $_SESSION['id_libro'];
 ?>
 
 <h2></h2>
-<form action='rec_check.php' method= 'post'>
+<form action='addComment.php' method= 'post'>
     <p>Rating:<p><input type='number' name='rating' min='0' max='5' value='1'/>
     <p>Commento:<p>
     <input id="comment-text" type="text" name="commento"><br>

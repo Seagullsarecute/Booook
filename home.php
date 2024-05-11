@@ -15,6 +15,8 @@ $conn = new mysqli($servername, $username, $pw, $dbname);
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
+echo "<script>alert(".$_SESSION['user_id'].")</script>";
+
 ?>
 
 <!DOCTYPE html>
