@@ -1,10 +1,11 @@
 <!doctype html>
 <html>
+<head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+<link href="stylesheet/nav.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="stylesheet/pagina_libro.css">
 <title>BOOOOK • libro </title>
 </head>
 <?php 
@@ -12,6 +13,7 @@
 session_start();
 $nome= $_SESSION['nome'];
 $cognome= $_SESSION['cognome'];
+$email = $_SESSION['email'];
 $id_libro= $_GET['id_libro'];
 $_SESSION['id_libro']= $id_libro;
 
@@ -40,7 +42,7 @@ if ($conn->connect_error) {
 {
   while($row= $result->fetch_assoc())
   {
-   echo "<div class='centre'><img src='images/book_covers/" . $row['src'] . "'></div></div>";
+   echo "<div class='centre'><img id='book-img' src='images/book_covers/" . $row['src'] . "'></div></div>";
    echo "<h1>TITOLO</h1>";
    echo "<h1>".$row['titolo']."</h1>";
    echo "<h3>AUTORE</h3>";

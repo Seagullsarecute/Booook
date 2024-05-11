@@ -4,6 +4,7 @@ session_start();
 
 $nome= $_SESSION['nome'];
 $cognome= $_SESSION['cognome'];
+$email = $_SESSION['email'];
 
 $servername = "localhost";
 $username = "root"; 
@@ -31,8 +32,42 @@ if ($conn->connect_error) {
 <body>
     <?php include 'navbar.php' ?>
     <div id="wrapper">
-        <h1 id="title">Benvenuto in BOOOOK</h1>
-        <h2>Elenco di annunci:</h2>
+        <h1 id="title">BOOOOK</h1>
+        <p id="description">Benvenuto nella home page di BOOOOK! In questo sito potrai scambiare i libri in tuo possesso (accedi alla tua <a href="profilo.php">area privata</a> 
+        per controllare i libri nel tuo inventario) con libri di altri utenti, accettando gli annunci da loro postati. Puoi accettare un annuncio solo se possiedi il libro richiesto dall'utente che l'ha pubblicato.<br><br>
+        - Vuoi scambiare un tuo libro ma non trovi un annuncio che ti soddisfi? <a href="#">WIP Pubblica un annuncio</a> e attendi che un altro utente lo accetti!</p>
+        <hr></hr>
+        <h2 id="annunci-lista-titolo">Elenco di annunci</h2>
+        <div id="filtri-wrapper">
+            <h3>Filtri</h3>
+            <form id="filtri-form" method="GET">
+                <label for="only_available">Solo libri che possiedi:</label>
+                <input type="checkbox" id="checkbox" name="only_available" value="true">
+                <label for="genere">Genere:</label>
+                <select id="genere" name="genere">
+                    <option value="none">Tutti</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="horror">Horror</option>
+                    <option value="giallo">Giallo</option>
+                    <option value="romantico">Romantico</option>
+                    <option value="avventura">Avventura</option>
+                    <option value="biografico">Biografico</option>
+                    <option value="storia">Storia</option>
+                    <option value="fantascienza">Fantascienza</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="comico">Comico</option>
+                    <option value="drammatico">Drammatico</option>
+                    <option value="poesia">Poesia</option>
+                    <option value="saggio">Saggio</option>
+                    <option value="tecnico">Tecnico</option>
+                    <option value="altro">Altro</option>
+                </select>
+                <label for="casa_editrice">Titolo:</label>
+                <input type="text" name="titolo">
+                <input type="submit" value="Applica filtri">
+            </form>
+
+        </div>
         <div id="annunci-wrapper">
             <?php 
             $sql = "SELECT 
@@ -54,6 +89,15 @@ if ($conn->connect_error) {
                     LEFT JOIN copia_libri AS copia_scambiato ON annunci.fk_id_copia_libro_scambiato = copia_scambiato.id_copia_libro
                     LEFT JOIN info_libri AS info_scambiato ON copia_scambiato.fk_id_info_libro = info_scambiato.id_info_libro
                     LEFT JOIN info_libri AS info_richiesto ON annunci.fk_id_info_libro_richiesto = info_richiesto.id_info_libro";
+                    if(isset($_GET['only_available']) && $_GET['only_available'] == 'true'){
+                        $sql .= "WHERE richi";
+                    }
+                    if(isset($_GET['genere']) && $_GET['genere'] != 'none'){
+                        $sql .= " WHERE richiesto_genere = '".$_GET['genere']."'";
+                    }
+                    if(isset($_GET['titolo']) && $_GET['titolo'] != ''){
+                        $sql .= " WHERE richiesto_titolo LIKE '%".$_GET['titolo']."%'";
+                    }
             $result = $conn->query($sql);
             if($result->num_rows > 0){
                 while($row = $result->fetch_assoc()) {
@@ -79,5 +123,6 @@ if ($conn->connect_error) {
         </div>
     </div>
 
+    <script src="script/home.js"></script>
 </body>
 </html>
