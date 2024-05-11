@@ -15,7 +15,7 @@ $_SESSION['cognome']="BAU";
 
 $nome= $_SESSION['nome'];
 $cognome= $_SESSION['cognome'];
-$id_libro= $_POST['id_libro'];
+$id_libro= $_SESSION['id_libro'];
 
     $servername = "localhost";
     $username = "root"; 

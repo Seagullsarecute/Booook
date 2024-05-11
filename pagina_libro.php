@@ -10,12 +10,11 @@
 <?php 
 
 session_start();
-$_SESSION['nome']="MEOW";
-$_SESSION['cognome']="BAU";
-
 $nome= $_SESSION['nome'];
 $cognome= $_SESSION['cognome'];
 $id_libro= $_GET['id_libro'];
+$_SESSION['id_libro']= $id_libro;
+
 
 $servername = "localhost";
 $username = "root"; 
@@ -71,7 +70,6 @@ if($result->num_rows >0)
   echo "<div id='review-header'>";
   echo "<h2>RECENSIONI</h2>";
   echo "<form action='form_recensione.php' method= 'post'>
-     <input type ='hidden' name='id_libro' value='$id_libro'>
      <input type ='submit' name='invio' value='Recensione' class='postButton'/>
      </form>";
   echo "</div>";
@@ -83,6 +81,12 @@ if($result->num_rows >0)
   }
   echo "</table>";
 } else{
+  echo "<div id='review-header'>";
+  echo "<h2>RECENSIONI</h2>";
+  echo "<form action='form_recensione.php' method= 'post'>
+     <input type ='submit' name='invio' value='Recensione' class='postButton'/>
+     </form>";
+  echo "</div>";
   echo "The table is empty";
 }
 
