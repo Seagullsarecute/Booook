@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href=""><?php echo "$nome"." "."$cognome" ?></a>
+  <a class="navbar-brand" href="profilo.php"><?php echo "$nome"." "."$cognome" ?></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,10 +9,7 @@
     <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
         <a class="nav-link" href="home.php">Annunci<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="profilo.php">Profilo<span class="sr-only"></span></a>
-    </li>
+</li>
       </ul>
       </div>
 </nav>
