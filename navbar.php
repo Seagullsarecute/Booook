@@ -10,11 +10,11 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a id="nav-profilo" class="nav-link" href="logout.php"><?php echo "$email" ?><span class="sr-only"></span></a>
+        <a id="nav-profilo" class="nav-link" href="profilo.php"><?php echo "$email" ?><span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a id="nav-logout" class="nav-link" href="logout.php">Logout<span class="sr-only"></span></a>
+        <a id="nav-logout" class="nav-link" href="logout.php">Logout</a>
       </li>
-      </ul>
-      </div>
+    </ul>
+  </div>
 </nav>

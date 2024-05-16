@@ -45,31 +45,28 @@ if ($conn->connect_error) {
                 <input type="checkbox" id="checkbox" name="only_available" value="true">
                 <label for="genere">Genere:</label>
                 <select id="genere" name="genere">
-                    <option value="none">Tutti</option>
-                    <option value="fantasy">Fantasy</option>
-                    <option value="horror">Horror</option>
-                    <option value="giallo">Giallo</option>
-                    <option value="romantico">Romantico</option>
-                    <option value="avventura">Avventura</option>
-                    <option value="biografico">Biografico</option>
-                    <option value="storia">Storia</option>
-                    <option value="fantascienza">Fantascienza</option>
-                    <option value="thriller">Thriller</option>
-                    <option value="comico">Comico</option>
-                    <option value="drammatico">Drammatico</option>
-                    <option value="poesia">Poesia</option>
-                    <option value="saggio">Saggio</option>
-                    <option value="tecnico">Tecnico</option>
-                    <option value="altro">Altro</option>
+                    <?php
+                    $sql = "SELECT DISTINCT genere FROM info_libri ORDER BY genere ASC";
+
+                    $result= $conn->query($sql);
+                    if($result->num_rows >0) {
+                        echo "<option disabled selected value='none'>Selezionare un genere</option>";
+                        while($row= $result->fetch_assoc()) {
+                            echo "<option value='". strtolower($row['genere']) ."'>". ucfirst($row['genere']) ."</option>";
+                        }
+                    }
+                    ?>
                 </select>
                 <label for="casa_editrice">Titolo:</label>
-                <input type="text" name="titolo">
+                <input type="text" name="titolo" placeholder="Selezionare un titolo">
                 <input type="submit" value="Applica filtri">
+                <a href="home.php" id="filter-reset-button">Reset</a>
             </form>
 
         </div>
         <div id="annunci-wrapper">
             <?php 
+            $filters_counter = 0;
             $sql = "SELECT 
                         info_richiesto.titolo AS richiesto_titolo,
                         info_richiesto.autore AS richiesto_autore,
@@ -88,23 +85,25 @@ if ($conn->connect_error) {
                     LEFT JOIN utenti ON annunci.fk_id_utente = utenti.id_utente
                     LEFT JOIN copia_libri AS copia_scambiato ON annunci.fk_id_copia_libro_scambiato = copia_scambiato.id_copia_libro
                     LEFT JOIN info_libri AS info_scambiato ON copia_scambiato.fk_id_info_libro = info_scambiato.id_info_libro
-                    LEFT JOIN info_libri AS info_richiesto ON annunci.fk_id_info_libro_richiesto = info_richiesto.id_info_libro";
-                    if(isset($_GET['only_available']) && $_GET['only_available'] == 'true'){
-                        $sql .= "WHERE richi";
-                    }
-                    if(isset($_GET['genere']) && $_GET['genere'] != 'none'){
-                        $sql .= " WHERE richiesto_genere = '".$_GET['genere']."'";
-                    }
-                    if(isset($_GET['titolo']) && $_GET['titolo'] != ''){
-                        $sql .= " WHERE richiesto_titolo LIKE '%".$_GET['titolo']."%'";
-                    }
+                    LEFT JOIN info_libri AS info_richiesto ON annunci.fk_id_info_libro_richiesto = info_richiesto.id_info_libro\n";
+            if(isset($_GET['only_available']) && $_GET['only_available'] == 'true'){
+                $sql .= ($filters_counter>0 ? "AND" : "WHERE") . " info_richiesto.id_info_libro IN (SELECT fk_id_info_libro FROM copia_libri WHERE fk_id_utente = ".$_SESSION['user_id'].")";
+                $filters_counter++;
+            }
+            if(isset($_GET['genere']) && $_GET['genere'] != 'none'){
+                $sql .= ($filters_counter>0 ? "AND" : "WHERE") . " info_scambiato.genere = '".$_GET['genere']."'";
+                $filters_counter++;
+            }
+            if(isset($_GET['titolo']) && $_GET['titolo'] != ''){
+                $sql .= ($filters_counter>0 ? "AND" : "WHERE") . " info_scambiato.titolo LIKE '%".$_GET['titolo']."%'";
+            }
             $result = $conn->query($sql);
             if($result->num_rows > 0){
                 while($row = $result->fetch_assoc()) {
                     echo "<div class='annuncio-singolo-wrapper'>";
                         echo "<h4><b>Offerto da:</b> " . $row['nome'] . " " . $row["cognome"]."</h4>";
                         echo "<div class='annuncio-singolo-scambiato'>";
-                            echo "<img class='annuncio-singolo-scambiato-img' src='images/book_covers/" . $row['scambiato_src'] . "'>";
+                            echo "<a href='pagina_libro.php?id_libro=".$row["richiesto_info_id"]."'><img class='annuncio-singolo-scambiato-img' src='images/book_covers/" . $row['scambiato_src'] . "'></a>";
                             echo "<div class='annuncio-singolo-scambiato-info'>";
                                 echo "<p><b>Titolo: </b>" . $row['scambiato_titolo'] . "</td>";
                                 echo "<p><b>Autore: </b>" . $row['scambiato_autore'] . "</td>";
@@ -119,6 +118,7 @@ if ($conn->connect_error) {
                     echo "</div>";
                 }
             }
+            
             ?>
         </div>
     </div>

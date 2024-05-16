@@ -20,4 +20,12 @@ window.onload = function() {
     document.getElementsByName('titolo')[0].addEventListener('input', function() {
         localStorage.setItem('titolo', this.value);
     });
+    document.getElementById("filter-reset-button").addEventListener("click", function() {
+        localStorage.removeItem('only_available');
+        localStorage.removeItem('genere');
+        localStorage.removeItem('titolo');
+        document.getElementById('checkbox').checked = false;
+        document.getElementById('genere').value = '';
+        document.getElementsByName('titolo')[0].value = '';
+    });
 };
