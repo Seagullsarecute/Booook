@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
-<title>BOOOOK • libro </title>
+<title>BOOOOK • libro</title>
 </head>
 <?php 
 
@@ -18,16 +18,16 @@ $cognome= $_SESSION['cognome'];
 $email = $_SESSION['email'];
 $id_libro= $_SESSION['id_libro'];
 
-    $servername = "localhost";
-    $username = "root"; 
-    $pw = ""; 
-    $dbname = "booook";
+$servername = "localhost";
+$username = "root"; 
+$pw = ""; 
+$dbname = "booook";
 
-    $conn = new mysqli($servername, $username, $pw, $dbname);
+$conn = new mysqli($servername, $username, $pw, $dbname);
 
-    if ($conn->connect_error) {
-        die("Connessione fallita: " . $conn->connect_error);
-    }
+if ($conn->connect_error) {
+    die("Connessione fallita: " . $conn->connect_error);
+}
 ?>
 
 <body>

@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 70px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #FF6542;
+    background-image: url('../images/backgrounds/home.jpeg');
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+    width: fit-content;
+    height: 100%;
+    margin: 40px auto;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    box-shadow: 3px 0px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+p {
+    margin: 0;
+}
+
+#title {
+    margin: auto;
+    text-align: center;
+    color: #000000;
+    font-family: "Rubik Doodle Shadow", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 6em;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#description {
+    text-align: start;
+    color: #000000;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+img {
+    object-fit: contain;
+}
+
+#subtitle {
+    text-align: center;
+    margin-bottom: 60px
+}
+
+#visual-wrapper-icon {
+    font-size: 7em;
+}
+
+#trade-visual-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 75px;
+}
+
+.trade-visual-book {
+    color: #FFF;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 3px 0px 20px 0 rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

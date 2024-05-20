@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,6 +68,7 @@ if ($conn->connect_error) {
             <?php 
             $filters_counter = 0;
             $sql = "SELECT 
+                        annunci.id_annuncio,
                         info_richiesto.titolo AS richiesto_titolo,
                         info_richiesto.autore AS richiesto_autore,
                         info_richiesto.genere AS richiesto_genere,
@@ -79,6 +80,8 @@ if ($conn->connect_error) {
                         info_scambiato.genere AS scambiato_genere,
                         info_scambiato.casa_editrice AS scambiato_casa_editrice,
                         info_scambiato.src AS scambiato_src,
+                        info_scambiato.id_info_libro AS scambiato_info_id,
+                        copia_scambiato.id_copia_libro AS scambiato_copia_id,
                         utenti.nome,
                         utenti.cognome
                     FROM annunci
@@ -103,7 +106,7 @@ if ($conn->connect_error) {
                     echo "<div class='annuncio-singolo-wrapper'>";
                         echo "<h4><b>Offerto da:</b> " . $row['nome'] . " " . $row["cognome"]."</h4>";
                         echo "<div class='annuncio-singolo-scambiato'>";
-                            echo "<a href='pagina_libro.php?id_libro=".$row["richiesto_info_id"]."'><img class='annuncio-singolo-scambiato-img' src='images/book_covers/" . $row['scambiato_src'] . "'></a>";
+                            echo "<a href='pagina_libro.php?id_libro=".$row["scambiato_info_id"]."'><img class='annuncio-singolo-scambiato-img' src='images/book_covers/" . $row['scambiato_src'] . "'></a>";
                             echo "<div class='annuncio-singolo-scambiato-info'>";
                                 echo "<p><b>Titolo: </b>" . $row['scambiato_titolo'] . "</td>";
                                 echo "<p><b>Autore: </b>" . $row['scambiato_autore'] . "</td>";
@@ -112,7 +115,17 @@ if ($conn->connect_error) {
                             echo "</div>";
                         echo "</div>";
                         echo "<div class='annuncio-singolo-richiesto'>";
-                            echo "<span>Libro da cedere: <a href='pagina_libro.php?id_libro=".$row["richiesto_info_id"]."'>".$row["richiesto_titolo"]."</a></span><button class='btn-scambia'>ESEGUI SCAMBIO</button>";
+                            echo "<span>Libro da cedere: 
+                                      <a href='pagina_libro.php?id_libro=".$row["richiesto_info_id"]."'>".$row["richiesto_titolo"]."</a>
+                                  </span>
+                                  <form method='POST' action='trade_confirmation.php'>
+                                    <input type='hidden' name='id_annuncio' value='".$row['id_annuncio']."'>
+                                    <input type='hidden' name='id_info_richiesto' value='".$row['richiesto_info_id']."'>
+                                    <input type='hidden' name='id_info_scambiato' value='".$row['scambiato_info_id']."'>
+                                    <input type='hidden' name='id_copia_scambiato' value='".$row['scambiato_copia_id']."'>
+                                    <input type='submit' class='btn-scambia' value='ESEGUI SCAMBIO'>
+                                  </form>
+                                ";
                         echo "</div>";
                         echo "<hr></hr>";
                     echo "</div>";
