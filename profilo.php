@@ -53,12 +53,19 @@ if($result->num_rows >0)
      echo "</div>";
      echo "</div>";
      echo "<hr></hr>";
+     echo "<div id='inv'>";
+     echo "<h3>Inventario</h3>";
+     echo "<form action='addBook.php' method= 'post'>
+     <input type ='submit' name='invio' value='+ LIBRO' class='postButton'/>
+     </form>";
+     echo "</div>";
+     echo "<hr></hr>";
     }
 }else{
     echo "The table is empty";
 }
 
-$sql = "SELECT src,titolo FROM copia_libri
+$sql = "SELECT src,titolo,id_info_libro FROM copia_libri
         JOIN info_libri ON fk_id_info_libro= id_info_libro
         WHERE fk_id_utente = $user_id";
 
@@ -71,7 +78,7 @@ if($result->num_rows >0)
     while($row= $result->fetch_assoc())
     {
         echo "<div class='info-libro'>";
-        echo "<img src='images/users_img/" . $row['src'] . "'>";
+        echo "<a href='pagina_libro.php?id_libro=".$row["id_info_libro"]."'><img src='images/book_covers/" . $row['src'] . "'></a>";
         echo "<h4>".$row['titolo']."</h4>";
         echo "</div>";
     }
