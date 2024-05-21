@@ -42,19 +42,19 @@ if ($conn->connect_error) {
 {
   while($row= $result->fetch_assoc())
   {
-   echo "<div class='centre'><img id='book-img' src='images/book_covers/" . $row['src'] . "'></div></div>";
-   echo "<h1>TITOLO</h1>";
+   echo "<div class='info'>";
+   echo "<img id='book-img' src='images/book_covers/" . $row['src'] . "'>";
+   echo "<div class='text'>";
    echo "<h1>".$row['titolo']."</h1>";
-   echo "<h3>AUTORE</h3>";
    echo "<h3>".$row['autore']."</h3>";
-   echo "<h3>GENERE</h3>";
    echo "<h3>".$row['genere']."</h3>";
-   echo "<h3>DESCRIZIONE</h3>";
-   echo "<h3>".$row['descrizione']."</h3>";
-   echo "<h3>RATING</h3>";
-   echo "<h3>".$row['rating']."</h3>";
-   echo "<h3>CASA EDITRICE</h3>";
    echo "<h3>".$row['casa_editrice']."</h3>";
+   echo "<h3>RATING: ".$row['rating']."</h3>";
+   echo "</div>";
+   echo "</div>";
+   echo "<hr></hr>";
+   echo "<h2>DESCRIZIONE</h2>";
+   echo "<h3>".$row['descrizione']."</h3>";
    echo "<hr></hr>";
   }
 } else{
