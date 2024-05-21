@@ -48,11 +48,12 @@ p {
 
 img {
     object-fit: contain;
+    margin-bottom: 10px;
 }
 
 #subtitle {
     text-align: center;
-    margin-bottom: 60px
+    margin-bottom: 60px;
 }
 
 #visual-wrapper-icon {
@@ -72,7 +73,7 @@ img {
     color: #FFF;
     padding: 15px 20px;
     border-radius: 8px;
-    box-shadow: 3px 0px 20px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -97,6 +97,7 @@ p {
     height:200px;
     margin-right: 20px;
     object-fit: contain;
+    border-radius: 4px;
 }
 
 .btn-scambia {
