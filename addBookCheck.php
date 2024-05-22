@@ -1,11 +1,10 @@
 <?php
    session_start();
-   $id_libro= $_SESSION['id_libro'];
+   $id_libro= $_POST['id_libro'];
    $id_utente= $_SESSION['user_id'];
-   $_SESSION['rating']= $_POST['rating'];
-   $testo=$_POST['commento'];
-
-    if(strlen($_SESSION['rating'])!==0 && strlen($testo)!==0)
+   echo $id_libro."- ".$id_utente; 
+ 
+    if($id_libro!==null && $id_utente!==null)
     {
         $servername = "localhost";
         $username = "root"; 
@@ -18,12 +17,13 @@
         die("Connessione fallita: " . $conn->connect_error);
         }
 
+       
         
-        $stmt = $conn->prepare("INSERT INTO commenti (rating, testo, fk_id_utente, fk_id_info_libro) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("isss", $_SESSION['rating'], $testo, $id_utente, $id_libro);
+        $stmt = $conn->prepare("INSERT INTO copia_libri(fk_id_info_libro, fk_id_utente) VALUES (?, ?)");
+        $stmt->bind_param("ii", $id_libro, $id_utente);
 
         if ($stmt->execute() === TRUE) {
-            header("Location: rec_check.php?id_libro=$id_libro");
+            header("Location: profilo.php");
          } else {
              echo "Errore durante l'inserimento dei dati: " . $conn->error;
          }
@@ -32,7 +32,7 @@
     }
     else
     {
-        header("Location: form_recensione.php");
+        header("Location: addBook.php");
         $stmt->close();
     }
 
