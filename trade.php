@@ -22,16 +22,28 @@ if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-// TODO: QUESTA QUERY VA FIXATA, NON FUNZIONA
-$sql = "UPDATE TOP(1) copia_libri SET fk_id_utente = (SELECT fk_id_utente FROM copia_libri WHERE id_copia_libro = $id_copia_ottenuto)
-        WHERE fk_id_info_libro = $id_info_consegnato AND fk_id_utente = $user_id";
+$sql = "INSERT INTO scambi (data, ora, fk_id_utente1, fk_id_utente2, fk_id_copia_libro1, fk_id_copia_libro2) 
+        VALUES 
+            (CURDATE(), 
+            CURTIME(), 
+            (SELECT fk_id_utente FROM copia_libri WHERE id_copia_libro = $id_copia_ottenuto LIMIT 1), 
+            $user_id, 
+            $id_copia_ottenuto, 
+            (SELECT id_copia_libro FROM copia_libri WHERE fk_id_info_libro = $id_info_consegnato AND fk_id_utente = $user_id LIMIT 1)
+        )";
+$conn->query($sql);
+
+$sql = "UPDATE copia_libri SET fk_id_utente = (SELECT fk_id_utente FROM copia_libri WHERE id_copia_libro = $id_copia_ottenuto LIMIT 1)
+        WHERE fk_id_info_libro = $id_info_consegnato AND fk_id_utente = $user_id LIMIT 1";
 $conn->query($sql);
 
 $sql = "UPDATE copia_libri SET fk_id_utente = $user_id WHERE id_copia_libro = $id_copia_ottenuto";
 $conn->query($sql);
 
 $sql = "DELETE FROM annunci WHERE id_annuncio = $id_annuncio";
-$conn->query($sql);
 
-header("Location: profilo.php");
-
+if ($conn->query($sql) === TRUE) {
+    header("Location: home.php");
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}

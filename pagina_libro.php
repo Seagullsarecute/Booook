@@ -47,16 +47,16 @@ if ($conn->connect_error) {
    echo "<div class='info'>";
    echo "<img id='book-img' src='images/book_covers/" . $row['src'] . "'>";
    echo "<div class='text'>";
-   echo "<h1>".$row['titolo']."</h1>";
-   echo "<h3>".$row['autore']."</h3>";
-   echo "<h3>".$row['genere']."</h3>";
-   echo "<h3>".$row['casa_editrice']."</h3>";
-   echo "<h3>RATING: ".$row['rating']."</h3>";
+   echo "<h2><b>Titolo: </b>".$row['titolo']."</h2>";
+   echo "<h4><b>Autore: </b>".$row['autore']."</h4>";
+   echo "<h4><b>Genere: </b>".$row['genere']."</h4>";
+   echo "<h4><b>Casa Editrice: </b>".$row['casa_editrice']."</h4>";
+   echo "<h4><b>RATING: </b>".$row['rating']." ★</h3>";
    echo "</div>";
    echo "</div>";
    echo "<hr></hr>";
-   echo "<h2>DESCRIZIONE</h2>";
-   echo "<h3>".$row['descrizione']."</h3>";
+   echo "<h3>DESCRIZIONE</h3>";
+   echo "<h4>".$row['descrizione']."</h4>";
    echo "<hr size='10'></hr>";
   }
 } else{
@@ -80,8 +80,8 @@ if($result->num_rows >0)
 
   while($row= $result->fetch_assoc())
   {
-  echo "<h2>".$row["nome"]." ".$row["cognome"]." Rating di ".$row["rating"]." ★</h2>";
-  echo "<h3>".$row["testo"]."</h3>";
+  echo "<h3><b>".$row["nome"]." ".$row["cognome"]."</b> Rating di <b>".$row["rating"]." ★</b></h3>";
+  echo "<h4>".$row["testo"]."</h4>";
   echo "<hr></hr>";
   }
 } else{

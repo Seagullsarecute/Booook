@@ -35,7 +35,7 @@ if ($conn->connect_error) {
         <h1 id="title">BOOOOK</h1>
         <p id="description">Benvenuto nella home page di BOOOOK! In questo sito potrai scambiare i libri in tuo possesso (accedi alla tua <a href="profilo.php">area privata</a> 
         per controllare i libri nel tuo inventario) con libri di altri utenti, accettando gli annunci da loro postati. Puoi accettare un annuncio solo se possiedi il libro richiesto dall'utente che l'ha pubblicato.<br><br>
-        - Vuoi scambiare un tuo libro ma non trovi un annuncio che ti soddisfi? <a href="#">WIP Pubblica un annuncio</a> e attendi che un altro utente lo accetti!</p>
+        - Vuoi scambiare un tuo libro ma non trovi un annuncio che ti soddisfi? <a href="addTrade.php">Pubblica un annuncio</a> e attendi che un altro utente lo accetti!</p>
         <hr></hr>
         <h2 id="annunci-lista-titolo">Elenco di annunci</h2>
         <div id="filtri-wrapper">
@@ -66,7 +66,6 @@ if ($conn->connect_error) {
         </div>
         <div id="annunci-wrapper">
             <?php 
-            $filters_counter = 0;
             $sql = "SELECT 
                         annunci.id_annuncio,
                         info_richiesto.titolo AS richiesto_titolo,
@@ -88,17 +87,16 @@ if ($conn->connect_error) {
                     LEFT JOIN utenti ON annunci.fk_id_utente = utenti.id_utente
                     LEFT JOIN copia_libri AS copia_scambiato ON annunci.fk_id_copia_libro_scambiato = copia_scambiato.id_copia_libro
                     LEFT JOIN info_libri AS info_scambiato ON copia_scambiato.fk_id_info_libro = info_scambiato.id_info_libro
-                    LEFT JOIN info_libri AS info_richiesto ON annunci.fk_id_info_libro_richiesto = info_richiesto.id_info_libro\n";
+                    LEFT JOIN info_libri AS info_richiesto ON annunci.fk_id_info_libro_richiesto = info_richiesto.id_info_libro
+                    WHERE annunci.fk_id_utente != ".$_SESSION['user_id']." ";
             if(isset($_GET['only_available']) && $_GET['only_available'] == 'true'){
-                $sql .= ($filters_counter>0 ? "AND" : "WHERE") . " info_richiesto.id_info_libro IN (SELECT fk_id_info_libro FROM copia_libri WHERE fk_id_utente = ".$_SESSION['user_id'].")";
-                $filters_counter++;
+                $sql .= "AND info_richiesto.id_info_libro IN (SELECT fk_id_info_libro FROM copia_libri WHERE fk_id_utente = ".$_SESSION['user_id'].")";
             }
             if(isset($_GET['genere']) && $_GET['genere'] != 'none'){
-                $sql .= ($filters_counter>0 ? "AND" : "WHERE") . " info_scambiato.genere = '".$_GET['genere']."'";
-                $filters_counter++;
+                $sql .= "AND info_scambiato.genere = '".$_GET['genere']."'";
             }
             if(isset($_GET['titolo']) && $_GET['titolo'] != ''){
-                $sql .= ($filters_counter>0 ? "AND" : "WHERE") . " info_scambiato.titolo LIKE '%".$_GET['titolo']."%'";
+                $sql .= "AND info_scambiato.titolo LIKE '%".$_GET['titolo']."%'";
             }
             $result = $conn->query($sql);
             if($result->num_rows > 0){
@@ -122,10 +120,16 @@ if ($conn->connect_error) {
                                     <input type='hidden' name='id_annuncio' value='".$row['id_annuncio']."'>
                                     <input type='hidden' name='id_info_richiesto' value='".$row['richiesto_info_id']."'>
                                     <input type='hidden' name='id_info_scambiato' value='".$row['scambiato_info_id']."'>
-                                    <input type='hidden' name='id_copia_scambiato' value='".$row['scambiato_copia_id']."'>
-                                    <input type='submit' class='btn-scambia' value='ESEGUI SCAMBIO'>
-                                  </form>
-                                ";
+                                    <input type='hidden' name='id_copia_scambiato' value='".$row['scambiato_copia_id']."'>";
+                                    // Controllo che l'utente possieda il libro richiesto
+                                    $sql_available = "SELECT * FROM copia_libri WHERE fk_id_info_libro = ".$row['richiesto_info_id']." AND fk_id_utente = ".$_SESSION['user_id'];
+                                    $result_available = $conn->query($sql_available);
+                                    if($result_available->num_rows > 0){
+                                        echo "<input type='submit' class='btn-scambia' value='ESEGUI SCAMBIO'>";
+                                    } else {
+                                        echo "<input type='submit' class='btn-scambia' value='ESEGUI SCAMBIO' disabled>";
+                                    }
+                                  echo "</form>";
                         echo "</div>";
                         echo "<hr></hr>";
                     echo "</div>";

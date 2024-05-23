@@ -5,6 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
+<link href="stylesheet/nav.css" rel="stylesheet" type="text/css">
+<link href="stylesheet/form_recensione.css" rel="stylesheet" type="text/css">
 <title>BOOOOK • libro</title>
 </head>
 <?php 
@@ -44,10 +46,11 @@ if ($conn->connect_error) {
 
 <h2></h2>
 <form action='addComment.php' method= 'post'>
-    <p>Rating:<p><input type='number' name='rating' min='0' max='5' value='1'/>
+    <p>Rating:<p><input type='number' name='rating' min='1' max='5' value='1'/>
     <p>Commento:<p>
     <input id="comment-text" type="text" name="commento"><br>
     <input type ='hidden' name='id_libro' value=<?php echo $id_libro ?>>
     <input type="submit" value="Invia">
 </form>
 </body>
+</html>

@@ -30,6 +30,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
+    $info_consegnato["id"] = $row['id_info_libro'];
     $info_consegnato["titolo"] = $row['titolo'];
     $info_consegnato["autore"] = $row['autore'];
     $info_consegnato["genere"] = $row['genere'];
@@ -45,6 +46,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
+    $info_ottenuto["id"] = $row['id_info_libro'];
     $info_ottenuto["titolo"] = $row['titolo'];
     $info_ottenuto["autore"] = $row['autore'];
     $info_ottenuto["genere"] = $row['genere'];
@@ -72,7 +74,7 @@ if ($result->num_rows > 0) {
         <div id="trade-visual-wrapper">
             <div class="trade-visual-book" style="background:rgb(50, 149, 39)">
                 <h2>Libro che otterrai</h2>
-                <img height=400 width=230 src="images/book_covers/<?php echo $info_ottenuto["src"] ?>">
+                <a href=""><img height=400 width=230 src="images/book_covers/<?php echo $info_ottenuto["src"] ?>"></a>
                 <h3><b><?php echo $info_ottenuto["titolo"] ?></b></h3>
                 <p><b>Autore:</b> <?php echo $info_ottenuto["autore"] ?></p>
                 <p><b>Genere:</b> <?php echo $info_ottenuto["genere"] ?></p>

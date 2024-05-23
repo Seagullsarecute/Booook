@@ -151,6 +151,11 @@ input[type="submit"]:hover {
     background-color: #1A4561;
 }
 
+input[type="submit"]:disabled {
+    background-color: #4b7cb579;
+    cursor: not-allowed;
+}
+
 #filtri-form label {
     margin-right: 5px;
     margin-left: 20px;

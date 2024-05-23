@@ -8,7 +8,6 @@ window.onload = function() {
     if(genere !== null) document.getElementById('genere').value = genere;
     if(titolo !== null) document.getElementsByName('titolo')[0].value = titolo;
 
-    // Add event listeners to save the state to LocalStorage whenever it changes
     document.getElementById('checkbox').addEventListener('change', function() {
         localStorage.setItem('only_available', this.checked);
     });

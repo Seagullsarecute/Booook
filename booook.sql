@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 04, 2024 alle 12:40
--- Versione del server: 10.4.8-MariaDB
--- Versione PHP: 7.3.10
+-- Creato il: Mag 21, 2024 alle 22:08
+-- Versione del server: 10.4.32-MariaDB
+-- Versione PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -26,7 +25,7 @@ DELIMITER $$
 --
 -- Procedure
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GeneraRecords` ()  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GeneraRecords` ()   BEGIN
   DECLARE i INT DEFAULT 1;
   WHILE i <= 50 DO
     INSERT INTO `copia_libri` (`fk_id_info_libro`, `fk_id_utente`) VALUES (FLOOR(1 + RAND() * 11), FLOOR(1 + RAND() * 12));
@@ -47,7 +46,7 @@ CREATE TABLE `annunci` (
   `fk_id_utente` int(11) NOT NULL,
   `fk_id_copia_libro_scambiato` int(11) NOT NULL,
   `fk_id_info_libro_richiesto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `annunci`
@@ -76,7 +75,7 @@ CREATE TABLE `commenti` (
   `rating` float NOT NULL,
   `fk_id_utente` int(11) NOT NULL,
   `fk_id_info_libro` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `commenti`
@@ -95,7 +94,7 @@ CREATE TABLE `copia_libri` (
   `id_copia_libro` int(11) NOT NULL,
   `fk_id_info_libro` int(11) NOT NULL,
   `fk_id_utente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `copia_libri`
@@ -166,27 +165,27 @@ CREATE TABLE `info_libri` (
   `autore` varchar(50) NOT NULL,
   `genere` varchar(50) NOT NULL,
   `descrizione` varchar(1024) NOT NULL,
-  `src` varchar(100) DEFAULT NULL,
+  `src` varchar(100) NOT NULL DEFAULT 'generic.png',
   `rating` double DEFAULT NULL,
   `casa_editrice` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `info_libri`
 --
 
 INSERT INTO `info_libri` (`id_info_libro`, `titolo`, `autore`, `genere`, `descrizione`, `src`, `rating`, `casa_editrice`) VALUES
-(1, 'LE AVVENTUREH MIAOSE', 'erGatto', 'thriller', 'AO sto libbro è fichissimo, dovete leggerlo, parla del gatto no? E ha delle AVVENTUREH???? ziopera leggetelo.', '', NULL, 'Gattastico'),
-(2, 'Il Segreto del Tempo', 'Luca Bianchi', 'fantascienza', 'Un viaggio straordinario attraverso le pieghe del tempo, dove ogni scelta può cambiare il destino dell\'umanità.', '', NULL, 'Nuove Sfere'),
-(3, 'I Sapori del Mediterraneo', 'Antonia Moretti', 'cucina', 'Esplora le ricette più gustose e i segreti culinari delle coste mediterranee, raccolti in un libro che è un vero e proprio viaggio sensoriale.', '', NULL, 'Gusto e Tradizione'),
-(4, 'La Caduta degli Dei', 'Francesco Rossi', 'fantasy', 'In un mondo dove gli dei camminano tra gli uomini, una guerra celeste minaccia di distruggere ogni cosa. Segui le avventure di eroi e mortali nel tentativo di salvare il loro mondo.', '', NULL, 'Fantasia Epica'),
-(5, 'Voci Nascoste', 'Giulia Fiore', 'thriller', 'Un thriller psicologico che ti porterà nei meandri della mente umana, dove i segreti più oscuri si svelano pagina dopo pagina.', '', NULL, 'Suspense'),
-(6, 'L\'Eredità Perduta', 'Marco Neri', 'avventura', 'Un romanzo d\'avventura che segue le orme di un antico mistero, portando il lettore in un viaggio mozzafiato attraverso continenti dimenticati.', '', NULL, 'Avventura Storica'),
-(7, 'Riflessi d\'Amore', 'Sofia Bianchi', 'romantico', 'Una storia d\'amore che sfida il tempo, raccontata attraverso le lettere di due amanti separati dalla guerra ma uniti dal destino.', '', NULL, 'Cuore e Passione'),
-(8, 'Il Giardino delle Ombre', 'Claudio Verdi', 'horror', 'Scopri cosa si nasconde dietro le siepi di un antico giardino inglese, in un romanzo horror che ti farà dubitare di ogni ombra.', '', NULL, 'Brividi Notturni'),
-(9, 'Codice Millenario', 'Alessandra Gialli', 'giallo', 'Un enigma secolare è sul punto di essere risolto, ma ci sono forze oscure che faranno di tutto per mantenere il segreto. Un thriller storico che unisce mistero e azione.', '', NULL, 'Mistero Antico'),
-(10, 'Sussurri del Passato', 'Elena Grigio', 'drammatico', 'La storia di una famiglia segnata da un passato doloroso, dove ogni rivelazione porta a nuove domande e antichi rimorsi.', '', NULL, 'Dramma Familiare'),
-(11, 'Le Stelle di Roma', 'Giorgio Celeste', 'storico', 'Un romanzo storico che illumina le vite di coloro che hanno costruito l\'impero più grande del mondo antico, mostrando la grandezza e la caducità del potere.', '', NULL, 'Epica Romana');
+(1, 'LE AVVENTUREH MIAOSE', 'erGatto', 'thriller', 'AO sto libbro è fichissimo, dovete leggerlo, parla del gatto no? E ha delle AVVENTUREH???? ziopera leggetelo.', 'LE AVVENTUREH MIAOSE.png', NULL, 'Gattastico'),
+(2, 'Il Segreto del Tempo', 'Luca Bianchi', 'fantascienza', 'Un viaggio straordinario attraverso le pieghe del tempo, dove ogni scelta può cambiare il destino dell\'umanità.', 'generic.png', NULL, 'Nuove Sfere'),
+(3, 'I Sapori del Mediterraneo', 'Antonia Moretti', 'cucina', 'Esplora le ricette più gustose e i segreti culinari delle coste mediterranee, raccolti in un libro che è un vero e proprio viaggio sensoriale.', 'generic.png', NULL, 'Gusto e Tradizione'),
+(4, 'La Caduta degli Dei', 'Francesco Rossi', 'fantasy', 'In un mondo dove gli dei camminano tra gli uomini, una guerra celeste minaccia di distruggere ogni cosa. Segui le avventure di eroi e mortali nel tentativo di salvare il loro mondo.', 'generic.png', NULL, 'Fantasia Epica'),
+(5, 'Voci Nascoste', 'Giulia Fiore', 'thriller', 'Un thriller psicologico che ti porterà nei meandri della mente umana, dove i segreti più oscuri si svelano pagina dopo pagina.', 'generic.png', NULL, 'Suspense'),
+(6, 'L\'Eredità Perduta', 'Marco Neri', 'avventura', 'Un romanzo d\'avventura che segue le orme di un antico mistero, portando il lettore in un viaggio mozzafiato attraverso continenti dimenticati.', 'generic.png', NULL, 'Avventura Storica'),
+(7, 'Riflessi d\'Amore', 'Sofia Bianchi', 'romantico', 'Una storia d\'amore che sfida il tempo, raccontata attraverso le lettere di due amanti separati dalla guerra ma uniti dal destino.', 'generic.png', NULL, 'Cuore e Passione'),
+(8, 'Il Giardino delle Ombre', 'Claudio Verdi', 'horror', 'Scopri cosa si nasconde dietro le siepi di un antico giardino inglese, in un romanzo horror che ti farà dubitare di ogni ombra.', 'generic.png', NULL, 'Brividi Notturni'),
+(9, 'Codice Millenario', 'Alessandra Gialli', 'giallo', 'Un enigma secolare è sul punto di essere risolto, ma ci sono forze oscure che faranno di tutto per mantenere il segreto. Un thriller storico che unisce mistero e azione.', 'generic.png', NULL, 'Mistero Antico'),
+(10, 'Sussurri del Passato', 'Elena Grigio', 'drammatico', 'La storia di una famiglia segnata da un passato doloroso, dove ogni rivelazione porta a nuove domande e antichi rimorsi.', 'generic.png', NULL, 'Dramma Familiare'),
+(11, 'Le Stelle di Roma', 'Giorgio Celeste', 'storico', 'Un romanzo storico che illumina le vite di coloro che hanno costruito l\'impero più grande del mondo antico, mostrando la grandezza e la caducità del potere.', 'generic.png', NULL, 'Epica Romana');
 
 -- --------------------------------------------------------
 
@@ -202,7 +201,7 @@ CREATE TABLE `scambi` (
   `fk_id_utente2` int(11) NOT NULL,
   `fk_id_copia_libro1` int(11) NOT NULL,
   `fk_id_copia_libro2` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -217,7 +216,7 @@ CREATE TABLE `utenti` (
   `email` varchar(50) NOT NULL,
   `pw` varchar(70) NOT NULL,
   `tipo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `utenti`
