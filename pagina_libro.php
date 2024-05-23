@@ -38,8 +38,10 @@ if ($conn->connect_error) {
 
   $result= $conn->query($sql);
 
+
   if($result->num_rows >0)
 {
+  echo "<div id='wrapper'>";
   while($row= $result->fetch_assoc())
   {
    echo "<div class='info'>";
@@ -55,7 +57,7 @@ if ($conn->connect_error) {
    echo "<hr></hr>";
    echo "<h2>DESCRIZIONE</h2>";
    echo "<h3>".$row['descrizione']."</h3>";
-   echo "<hr></hr>";
+   echo "<hr size='10'></hr>";
   }
 } else{
   echo "The table is empty";
@@ -69,28 +71,30 @@ $sql = "SELECT * FROM commenti
 $result= $conn->query($sql);
 if($result->num_rows >0)
 {
-  echo "<div id='review-header'>";
-  echo "<h2>RECENSIONI</h2>";
-  echo "<form action='form_recensione.php' method= 'post'>
-     <input type ='submit' name='invio' value='Recensione' class='postButton'/>
-     </form>";
-  echo "</div>";
-  echo "<table class='table table-hover'> <tr> <th> UTENTE</th><th> RATING </th><th> COMMENTO </th></tr>";
+  
+  echo "<form action='form_recensione.php' method= 'post' class='comment-form'>
+  <div style='text-align: right;'>
+  <input type='submit' name='invio' value='Commenta'>
+  </div>
+  </form>";
 
   while($row= $result->fetch_assoc())
   {
-  echo "<tr><td>".$row["nome"]." ".$row["cognome"]."</td><td>".$row["rating"]."</td><td>".$row["testo"]."</td></tr>";
+  echo "<h2>".$row["nome"]." ".$row["cognome"]." Rating di ".$row["rating"]." ★</h2>";
+  echo "<h3>".$row["testo"]."</h3>";
+  echo "<hr></hr>";
   }
-  echo "</table>";
 } else{
   echo "<div id='review-header'>";
-  echo "<h2>RECENSIONI</h2>";
+  echo "<h3>RECENSIONI</h3>";
+  echo "<hr></hr>";
   echo "<form action='form_recensione.php' method= 'post'>
-     <input type ='submit' name='invio' value='Recensione' class='postButton'/>
+     <input type ='submit' name='invio' value='Commenta' class='postButton'/>
      </form>";
   echo "</div>";
   echo "The table is empty";
 }
+echo "</div>";
 
 ?>
-  </body>
+</body>
