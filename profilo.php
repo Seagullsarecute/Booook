@@ -77,8 +77,8 @@ if($result->num_rows >0)
     echo "<div class='wrp2'>";
     while($row= $result->fetch_assoc())
     {
-        echo "<div class='info-libro'>";
-        echo "<a href='pagina_libro.php?id_libro=".$row["id_info_libro"]."'><img height=225 width=225 src='images/book_covers/" . $row['src'] . "'></a>";
+        echo "<div class='info-libro row'>";
+        echo "<a class='col-2' href='pagina_libro.php?id_libro=".$row["id_info_libro"]."'><img height=225 width=225 src='images/book_covers/" . $row['src'] . "'></a>";
         echo "<h4>".$row['titolo']."</h4>";
         echo "</div>";
     }

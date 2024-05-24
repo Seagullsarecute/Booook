@@ -5,6 +5,7 @@ session_start();
 $nome= $_SESSION['nome'];
 $cognome= $_SESSION['cognome'];
 $email = $_SESSION['email'];
+$user_id = $_SESSION['user_id'];
 
 $servername = "localhost";
 $username = "root"; 

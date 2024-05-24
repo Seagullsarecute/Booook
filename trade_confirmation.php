@@ -5,6 +5,7 @@ session_start();
 $nome= $_SESSION['nome'];
 $cognome= $_SESSION['cognome'];
 $email = $_SESSION['email'];
+$user_id = $_SESSION['user_id'];
 
 $trade_id = $_POST['id_annuncio'];
 $id_info_richiesto = $_POST['id_info_richiesto'];

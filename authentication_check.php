@@ -30,6 +30,7 @@ if($_POST["action"] == "login") {
         $_SESSION['email'] = $row['email'];
         $_SESSION['nome'] = $row['nome'];
         $_SESSION['cognome'] = $row['cognome'];
+        $_SESSION['tipo'] = $row['tipo'];
 
         // Redirect to home.php
         header("Location: home.php");
@@ -47,6 +48,7 @@ else if ($_POST["action"] == "register") {
     $cognome = $_POST['cognome'];
     $email = $_POST['email'];
     $pw = md5($_POST['pw']);
+    $tipo = $_POST['tipo'];
 
     // Create a prepared statement to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM utenti WHERE email=?");
@@ -61,9 +63,9 @@ else if ($_POST["action"] == "register") {
         echo "<p>Torna a pagina di <a href=\"index.php\">login</a></p>";
     }
     else {
-        $stmt = $conn->prepare("INSERT INTO utenti (nome, cognome, email, pw) Values (?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO utenti (nome, cognome, email, pw, tipo) VALUES (?, ?, ?, ?, ?)");
 
-        $stmt->bind_param("ssss", $nome, $cognome, $email, $pw);
+        $stmt->bind_param("ssss", $nome, $cognome, $email, $pw, $tipo);
 
         $stmt->execute();
 
@@ -71,7 +73,9 @@ else if ($_POST["action"] == "register") {
         $_SESSION['email'] = $email;
         $_SESSION['nome'] = $nome;
         $_SESSION['cognome'] = $cognome;
+        $_SESSION['tipo'] = $tipo;
         header("Location: home.php");
+        
     }
 }
 else {
