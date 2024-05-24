@@ -45,6 +45,11 @@ if($result->num_rows >0)
 {
     while($row= $result->fetch_assoc())
     {
+     echo "<div class='recrdsButton'>";
+     echo "<form action='recordPage.php'  method= 'post'>
+     <input type ='submit' name='invio' value='I TUOI RECORDS'class='postButton'/>
+     </form>";
+     echo "</div>";
      echo "<div class='wrapper'>";
      echo "<div class='img'><img src='images/users_img/" . $row['srcUser'] . "'></div>";
      echo "<div class='text'>";
@@ -77,8 +82,8 @@ if($result->num_rows >0)
     echo "<div class='wrp2'>";
     while($row= $result->fetch_assoc())
     {
-        echo "<div class='info-libro row'>";
-        echo "<a class='col-2' href='pagina_libro.php?id_libro=".$row["id_info_libro"]."'><img height=225 width=225 src='images/book_covers/" . $row['src'] . "'></a>";
+        echo "<div class='info-libro'>";
+        echo "<a href='pagina_libro.php?id_libro=".$row["id_info_libro"]."'><img src='images/book_covers/" . $row['src'] . "' class='img-libr'></a>";
         echo "<h4>".$row['titolo']."</h4>";
         echo "</div>";
     }

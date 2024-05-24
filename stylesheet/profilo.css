@@ -53,3 +53,13 @@ body {
     background-color: #1a5497;
   }
   
+  .img-libr {
+    width:  200px;
+    height: 200px;
+    object-fit: cover;
+}
+.recrdsButton{
+  float: right;
+  padding-right: 15px;
+  padding-top: 15px;
+}

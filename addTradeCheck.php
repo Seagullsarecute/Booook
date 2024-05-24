@@ -27,7 +27,6 @@ if ($conn->connect_error) {
 }
 
 $sql = "INSERT INTO annunci (fk_id_utente, fk_id_copia_libro_scambiato, fk_id_info_libro_richiesto) VALUES ($user_id, $id_copia_libro, $id_info_libro)";
-sleep(10);
 
 if ($conn->query($sql) === TRUE) {
     header("Location: home.php");

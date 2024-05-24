@@ -3,9 +3,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="stylesheet/nav.css">
 <link rel="stylesheet" href="stylesheet/addBook.css">
-<link href="stylesheet/nav.css" rel="stylesheet" type="text/css">
-<title>BOOOOK • Nuovo Libro</title>
+<title>BOOOOK • libro</title>
 </head>
 
 <?php 
@@ -34,9 +34,9 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM info_libri";
 
 $result=$conn->query($sql);
-echo "<p id='title'>BOOOOK</p>";
-echo "<h2>Aggiungi un libro al tuo inventario</h2>";
-echo "<p>Seleziona un libro dalla lista sottostante per aggiungerlo al tuo inventario. Si ricorda che per aggiungere nuovi libri al database, è necessario utilizzare un account admin</p>";
+echo "<h1>Aggiungi un libro al tuo inventario</h1>";
+echo "<h5>Clicca sul pulsante + sotto il libro che desideri per aggiungerlo al tuo inventario, verrai reindirizzato alla tua pagina profilo con il tuo inventario aggiornato!</h5>";
+echo "<h5>Clicca sulla copertina del libro per visualizzare le sue informazioni oppure <a href='profilo.php'>torna al tuo profilo</a></h5>";
 echo "<hr></hr>";
 
 if($result->num_rows >0)
@@ -45,7 +45,7 @@ if($result->num_rows >0)
     while($row= $result->fetch_assoc())
     {
         echo "<div class='info-libro'>";
-        echo "<a href='pagina_libro.php?id_libro=".$row["id_info_libro"]."'><img class='book-img' src='images/book_covers/" . $row['src'] . "' ></a>";
+        echo "<a href='pagina_libro.php?id_libro=".$row["id_info_libro"]."'><img src='images/book_covers/" . $row['src'] . "' class='book-img'></a>";
         echo "<h4>".$row['titolo']."</h4>";
         echo "<form action='addBookCheck.php' method= 'post'>
         <input type ='hidden' name='id_libro' value=".$row["id_info_libro"].">
@@ -59,6 +59,4 @@ else{
     echo "the archive is empty";
 }
 ?>
-
-
 

@@ -16,6 +16,9 @@ body {
     height: auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    max-width: 300px;
+    max-height: 750px;
+    object-fit: contain;
   }
 
 #review-header {

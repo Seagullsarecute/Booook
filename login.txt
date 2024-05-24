@@ -1,0 +1,9 @@
+credenziali account user:
+
+user:luca@a.a
+pw:luca
+
+credenziali account admin:
+
+user:ash@a.a
+pw:ash
